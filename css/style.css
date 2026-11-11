@@ -1,0 +1,51 @@
+:root {
+    --bg-primary: #0f141c;     /* Azul escuro místico (fundo principal) */
+    --bg-card: #192231;        /* Azul escuro suave para os cards */
+    --text-main: #f3f4f6;      /* Branco gelo para leitura perfeita (WCAG AAA) */
+    --rarity-legendary: #f59e0b; /* Dourado brilhante */
+    --rarity-epic: #a855f7;      /* Roxo mágico */
+    --rarity-rare: #06b6d4;      /* Azul ciano */
+    --rarity-common: #9ca3af;    /* Cinza neutro */
+}
+
+
+/* Importando uma fonte com pegada medieval/moderna (Opcional, cai muito bem) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #121214;
+    color: #e1e1e6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Títulos com um toque de RPG */
+h1, h2, h3, .navbar-brand {
+    font-family: 'Cinzel', serif;
+}
+
+/* Efeito de destaque nos Cards de Itens */
+.item-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Classes para o modo claro (que vamos ativar via JavaScript depois) */
+body.light-mode {
+    background-color: #f4f4f9;
+    color: #212529;
+}
+
+body.light-mode .card {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-color: #dee2e6 !important;
+}
+
+body.light-mode .card .text-secondary {
+    color: #6c757d !important;
+}
