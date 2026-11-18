@@ -1,4 +1,4 @@
-// Base de dados simulada dos itens do inventário RPG
+// Base de dados expandida inspirada no universo de Zelda e no modelo de catálogo
 const inventoryItems = [
     {
         id: 1,
@@ -39,6 +39,46 @@ const inventoryItems = [
         icon: "bi-gem",
         description: "Brilha com uma energia misteriosa de eras passadas.",
         contrastScore: "7.2:1 (Passa WCAG AAA)"
+    },
+    {
+        id: 5,
+        name: "Arco do Herói",
+        category: "armas",
+        rarity: "Raro",
+        rarityBadge: "bg-info text-dark",
+        icon: "bi-bullseye",
+        description: "Arco preciso utilizado para abater inimigos à distância.",
+        contrastScore: "9.0:1 (Passa WCAG AAA)"
+    },
+    {
+        id: 6,
+        name: "Bumerangue Ventoso",
+        category: "reliquias",
+        rarity: "Comum",
+        rarityBadge: "bg-secondary text-white",
+        icon: "bi-wind",
+        description: "Retorna sempre para as mãos de quem o arremessou.",
+        contrastScore: "5.5:1 (Passa WCAG AA)"
+    },
+    {
+        id: 7,
+        name: "Túnica dos Zoras",
+        category: "escudos",
+        rarity: "Épico",
+        rarityBadge: "bg-purple text-white",
+        icon: "bi-water",
+        description: "Permite respirar e nadar com liberdade embaixo d'água.",
+        contrastScore: "6.8:1 (Passa WCAG AA)"
+    },
+    {
+        id: 8,
+        name: "Fada Engarrafada",
+        category: "pocoes",
+        rarity: "Lendário",
+        rarityBadge: "bg-warning text-dark",
+        icon: "bi-heart-fill",
+        description: "Revive o jogador automaticamente caso os pontos de vida zerem.",
+        contrastScore: "11.2:1 (Passa WCAG AAA)"
     }
 ];
 
@@ -89,7 +129,6 @@ function openItemModal(id) {
     const item = inventoryItems.find(i => i.id === id);
     if (!item) return;
 
-    // Preenche os elementos do modal com as informações do item
     document.getElementById('modal-item-name').textContent = item.name;
     document.getElementById('modal-item-desc').textContent = item.description;
     document.getElementById('modal-item-contrast').textContent = item.contrastScore;
@@ -101,7 +140,6 @@ function openItemModal(id) {
     badgeElement.className = `badge mb-2 ${item.rarityBadge}`;
     badgeElement.textContent = item.rarity;
 
-    // Dispara o componente Modal do Bootstrap via JavaScript
     const modalElement = document.getElementById('itemModal');
     const modal = new bootstrap.Modal(modalElement);
     modal.show();
