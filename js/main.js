@@ -1,4 +1,4 @@
-// Base de dados expandida inspirada no universo de Zelda
+// Base de dados expandida inspirada no universo de Zelda com Status de RPG
 const inventoryItems = [
     {
         id: 1,
@@ -8,7 +8,12 @@ const inventoryItems = [
         rarityBadge: "bg-warning text-dark",
         icon: "bi-sword",
         description: "A espada lendária que bane a escuridão.",
-        contrastScore: "12.4:1 (Passa WCAG AAA)"
+        stats: [
+            { label: "Dano Base", value: "120 ATK" },
+            { label: "Taxa de Crítico", value: "25% (+150% Dano Crítico)" },
+            { label: "Efeito Especial", value: "Dispara feixes de luz sagrada com a vida cheia." },
+            { label: "Passiva", value: "+50% de dano contra inimigos corrompidos pela Malícia." }
+        ]
     },
     {
         id: 2,
@@ -17,8 +22,12 @@ const inventoryItems = [
         rarity: "Raro",
         rarityBadge: "bg-info text-dark",
         icon: "bi-shield-fill",
-        description: "Um escudo tradicional com altíssima durabilidade.",
-        contrastScore: "8.1:1 (Passa WCAG AAA)"
+        description: "Um escudo tradicional forjado com metal sagrado de altíssima resistência.",
+        stats: [
+            { label: "Defesa", value: "90 DEF" },
+            { label: "Vida Adicional", value: "+150 HP" },
+            { label: "Efeito Especial", value: "Reflete projéteis mágicos ao realizar bloqueio perfeito (Parry)." }
+        ]
     },
     {
         id: 3,
@@ -27,8 +36,11 @@ const inventoryItems = [
         rarity: "Comum",
         rarityBadge: "bg-secondary text-white",
         icon: "bi-cup-straw",
-        description: "Restaura os pontos de vida completamente.",
-        contrastScore: "4.8:1 (Passa WCAG AA)"
+        description: "Elixir alquímico concentrado preparado com ervas de Hyrule.",
+        stats: [
+            { label: "Efeito Principal", value: "Restaura 100% dos pontos de vida (HP) instantaneamente." },
+            { label: "Efeito Secundário", value: "Concede +20% de regeneração natural por 15 segundos." }
+        ]
     },
     {
         id: 4,
@@ -37,8 +49,11 @@ const inventoryItems = [
         rarity: "Épico",
         rarityBadge: "bg-purple text-white",
         icon: "bi-gem",
-        description: "Brilha com uma energia misteriosa de eras passadas.",
-        contrastScore: "7.2:1 (Passa WCAG AAA)"
+        description: "Relíquia equipada que canaliza a energia mística dos antigos sábios.",
+        stats: [
+            { label: "Atributos Equipáveis", value: "+35 Inteligência | +200 Mana Máxima" },
+            { label: "Bônus de Status", value: "Reduz o tempo de recarga das habilidades em 15%." }
+        ]
     },
     {
         id: 5,
@@ -47,8 +62,13 @@ const inventoryItems = [
         rarity: "Raro",
         rarityBadge: "bg-info text-dark",
         icon: "bi-bullseye",
-        description: "Arco preciso utilizado para abater inimigos à distância.",
-        contrastScore: "9.0:1 (Passa WCAG AAA)"
+        description: "Arco élfico de longo alcance com mira estabilizada.",
+        stats: [
+            { label: "Dano Base", value: "85 ATK" },
+            { label: "Taxa de Crítico", value: "35% (Acerto na cabeça garante crítico)" },
+            { label: "Efeito Especial", value: "Carrega flechas elementais 30% mais rápido." },
+            { label: "Passiva", value: "Aumenta a velocidade de movimento após acertar um alvo." }
+        ]
     },
     {
         id: 6,
@@ -57,8 +77,11 @@ const inventoryItems = [
         rarity: "Comum",
         rarityBadge: "bg-secondary text-white",
         icon: "bi-wind",
-        description: "Retorna sempre para as mãos de quem o arremessou.",
-        contrastScore: "5.5:1 (Passa WCAG AA)"
+        description: "Amuleto e ferramenta aerodinâmica usada pelos exploradores dos céus.",
+        stats: [
+            { label: "Atributos Equipáveis", value: "+20 Agilidade | +15% Velocidade de Ataque" },
+            { label: "Bônus de Status", value: "Aumenta o alcance de coleta de itens e esquiva." }
+        ]
     },
     {
         id: 7,
@@ -67,8 +90,12 @@ const inventoryItems = [
         rarity: "Épico",
         rarityBadge: "bg-purple text-white",
         icon: "bi-water",
-        description: "Permite respirar e nadar com liberdade embaixo d'água.",
-        contrastScore: "6.8:1 (Passa WCAG AA)"
+        description: "Armadura leve tecida com escamas abençoadas da família real Zora.",
+        stats: [
+            { label: "Defesa", value: "65 DEF" },
+            { label: "Vida Adicional", value: "+220 HP" },
+            { label: "Efeito Especial", value: "Permite respirar embaixo d'água e reduz dano de gelo/água em 40%." }
+        ]
     },
     {
         id: 8,
@@ -77,8 +104,11 @@ const inventoryItems = [
         rarity: "Lendário",
         rarityBadge: "bg-warning text-dark",
         icon: "bi-heart-fill",
-        description: "Revive o jogador automaticamente caso os pontos de vida zerem.",
-        contrastScore: "11.2:1 (Passa WCAG AAA)"
+        description: "Espírito luminoso que acompanha e protege o portador em momentos fatais.",
+        stats: [
+            { label: "Efeito Principal", value: "Ressuscita o jogador automaticamente com 50% de HP ao sofrer dano fatal." },
+            { label: "Efeito Secundário", value: "Limpa todos os efeitos negativos (veneno, queimadura e maldição) ao ativar." }
+        ]
     }
 ];
 
@@ -113,7 +143,7 @@ function renderInventory(itemsToRender) {
                     </div>
                     <div class="mt-3">
                         <button class="btn btn-sm btn-outline-warning w-100" onclick="openItemModal(${item.id})">
-                            Ver WCAG & Contraste
+                            Ver Status & Efeitos
                         </button>
                     </div>
                 </div>
@@ -124,14 +154,22 @@ function renderInventory(itemsToRender) {
     });
 }
 
-// Função para abrir o Modal com os dados do item clicado
+// Função para abrir o Modal com os status de RPG do item clicado
 function openItemModal(id) {
     const item = inventoryItems.find(i => i.id === id);
     if (!item) return;
 
     document.getElementById('modal-item-name').textContent = item.name;
     document.getElementById('modal-item-desc').textContent = item.description;
-    document.getElementById('modal-item-contrast').textContent = item.contrastScore;
+    
+    // Monta a lista formatada de status e efeitos do item
+    const statsContainer = document.getElementById('modal-item-stats');
+    statsContainer.innerHTML = item.stats.map(stat => `
+        <div class="mb-2 border-bottom border-secondary pb-1">
+            <span class="text-info fw-bold">${stat.label}:</span> 
+            <span>${stat.value}</span>
+        </div>
+    `).join('');
     
     const iconElement = document.getElementById('modal-item-icon');
     iconElement.innerHTML = `<i class="bi ${item.icon}"></i>`;
@@ -150,7 +188,6 @@ function setupFilters() {
     const filterButtons = document.querySelectorAll('[role="group"] button');
 
     filterButtons.forEach(button => {
-        // Ignora os botões de acessibilidade que estão no mesmo grupo de papéis se houver conflito
         if(button.id.includes('font')) return;
 
         button.addEventListener('click', (e) => {
@@ -188,9 +225,8 @@ function setupFilters() {
 // Funcionalidades de Acessibilidade (Tamanho de Fonte e Tema)
 function setupAccessibility() {
     const htmlRoot = document.documentElement;
-    let currentFontSize = 100; // Porcentagem padrão
+    let currentFontSize = 100;
 
-    // Aumentar fonte
     document.getElementById('btn-font-increase').addEventListener('click', () => {
         if (currentFontSize < 140) {
             currentFontSize += 10;
@@ -198,7 +234,6 @@ function setupAccessibility() {
         }
     });
 
-    // Diminuir fonte
     document.getElementById('btn-font-decrease').addEventListener('click', () => {
         if (currentFontSize > 80) {
             currentFontSize -= 10;
@@ -206,13 +241,11 @@ function setupAccessibility() {
         }
     });
 
-    // Resetar fonte
     document.getElementById('btn-font-reset').addEventListener('click', () => {
         currentFontSize = 100;
         htmlRoot.style.fontSize = '100%';
     });
 
-    // Alternar Tema Claro / Escuro
     const themeToggleBtn = document.getElementById('btn-theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 

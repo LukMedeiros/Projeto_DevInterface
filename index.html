@@ -122,12 +122,12 @@
         </div>
     </main>
 
-    <!-- Modal de Inspeção de Item / WCAG -->
+    <!-- Modal de Status do Item -->
     <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark text-white border-secondary">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title" id="itemModalLabel">Inspeção do Item</h5>
+                    <h5 class="modal-title" id="itemModalLabel">Atributos do Equipamento</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body text-center">
@@ -137,8 +137,10 @@
                     <p id="modal-item-desc" class="text-secondary my-3"></p>
                     <hr class="border-secondary">
                     <div class="text-start bg-black p-3 rounded border border-secondary">
-                        <small class="text-info fw-bold d-block mb-1"><i class="bi bi-eye-fill me-1"></i> Relatório de Acessibilidade:</small>
-                        <span id="modal-item-contrast" class="text-light"></span>
+                        <small class="text-warning fw-bold d-block mb-2">
+                            <i class="bi bi-bar-chart-fill me-1"></i> Status & Efeitos de Combate:
+                        </small>
+                        <div id="modal-item-stats" class="text-light small"></div>
                     </div>
                 </div>
                 <div class="modal-footer border-secondary">
