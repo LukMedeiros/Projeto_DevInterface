@@ -1,4 +1,4 @@
-// Base de dados expandida inspirada no universo de Zelda e no modelo de catálogo
+// Base de dados expandida inspirada no universo de Zelda
 const inventoryItems = [
     {
         id: 1,
@@ -150,8 +150,15 @@ function setupFilters() {
     const filterButtons = document.querySelectorAll('[role="group"] button');
 
     filterButtons.forEach(button => {
+        // Ignora os botões de acessibilidade que estão no mesmo grupo de papéis se houver conflito
+        if(button.id.includes('font')) return;
+
         button.addEventListener('click', (e) => {
-            filterButtons.forEach(btn => {
+            const group = e.target.closest('.btn-group');
+            if(!group) return;
+
+            const buttonsInGroup = group.querySelectorAll('button');
+            buttonsInGroup.forEach(btn => {
                 btn.classList.remove('btn-primary', 'active');
                 btn.classList.add('btn-outline-secondary');
             });
@@ -178,8 +185,54 @@ function setupFilters() {
     });
 }
 
+// Funcionalidades de Acessibilidade (Tamanho de Fonte e Tema)
+function setupAccessibility() {
+    const htmlRoot = document.documentElement;
+    let currentFontSize = 100; // Porcentagem padrão
+
+    // Aumentar fonte
+    document.getElementById('btn-font-increase').addEventListener('click', () => {
+        if (currentFontSize < 140) {
+            currentFontSize += 10;
+            htmlRoot.style.fontSize = `${currentFontSize}%`;
+        }
+    });
+
+    // Diminuir fonte
+    document.getElementById('btn-font-decrease').addEventListener('click', () => {
+        if (currentFontSize > 80) {
+            currentFontSize -= 10;
+            htmlRoot.style.fontSize = `${currentFontSize}%`;
+        }
+    });
+
+    // Resetar fonte
+    document.getElementById('btn-font-reset').addEventListener('click', () => {
+        currentFontSize = 100;
+        htmlRoot.style.fontSize = '100%';
+    });
+
+    // Alternar Tema Claro / Escuro
+    const themeToggleBtn = document.getElementById('btn-theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlRoot.getAttribute('data-bs-theme');
+        if (currentTheme === 'dark') {
+            htmlRoot.setAttribute('data-bs-theme', 'light');
+            themeIcon.className = 'bi bi-moon-fill';
+            document.body.className = 'bg-light text-dark';
+        } else {
+            htmlRoot.setAttribute('data-bs-theme', 'dark');
+            themeIcon.className = 'bi bi-sun-fill';
+            document.body.className = 'bg-dark text-white';
+        }
+    });
+}
+
 // Executa assim que a página carregar
 document.addEventListener('DOMContentLoaded', () => {
     renderInventory(inventoryItems);
     setupFilters();
+    setupAccessibility();
 });
